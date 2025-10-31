@@ -17,7 +17,7 @@ RUN mvn clean install
 FROM tomcat:10.1.13-jre17-temurin-jammy
 
 # Change the tomcat port
-RUN sed -i 's/port="8080"/port="9090"/' ${CATALINA_HOME}/conf/server.xml
+RUN sed -i 's/port="8080"/port="9091"/' ${CATALINA_HOME}/conf/server.xml
 
 # Set the working directory in the final stage
 WORKDIR /usr/local/tomcat/webapps
@@ -26,7 +26,7 @@ WORKDIR /usr/local/tomcat/webapps
 COPY --from=build /app/target/DAT152WebSearchOblig4-0.0.1-SNAPSHOT.war DAT152WebSearchOblig4.war
 
 # Expose the default Tomcat port
-EXPOSE 9090
+EXPOSE 9091
 
 # Start Tomcat when the container runs
 CMD ["catalina.sh", "run"]
